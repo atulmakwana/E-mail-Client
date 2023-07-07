@@ -1,0 +1,28 @@
+# version:'3'
+# services:
+#   run-handler:
+#     image:'runhandler'
+#   run-email:
+#     build: .
+#     ports: 
+#       - "3001:3001"
+
+version: '3'
+
+
+services: 
+  run-app:
+    build : .
+    image: email-client
+    command: npm run start
+    network_mode: "host"
+
+  torunthehandler:
+    image: email-client
+    command: npm run runHandler
+    network_mode: "host"
+
+  toruncronjob:
+    image: email-client
+    command: npm run runCronjob
+    network_mode: "host"
